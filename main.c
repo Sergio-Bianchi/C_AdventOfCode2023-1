@@ -6,36 +6,45 @@
 int main() {
     // Variables declaration
     FILE * fp;
+    char string[50];
+    int total = 0;
 
-
-
+    // Open the file
     fp = fopen("input.txt","r");
-    for(int i=0; i<10; i++){
-        char * string;
-        int stringSize;
-        fscanf(fp,"%s\n",string);
-        printf("%s\n", string);
+
+    // For every line (I could edit to make it work with n lines)
+    for(int i=0; i<1000; i++){
+        // Variable declaration
+        unsigned long stringSize;
+        int arraySlot = 0;
+        int numbersFound[20];
+
+        // Scan the line string
+        fscanf(fp,"%s\n",&string);
         stringSize = strlen(string);
 
-        int arraySlot = 0;
+
+
+
+
+        // For every character
         for(int j = 0; j<stringSize; j++){
-            int numbersFound[10];
-            printf("%c ", string[j]);
-            if(string[j] >= 48 & string[j] <=57) {
-                int intChar = 47;
-                numbersFound[arraySlot] = intChar;
-                printf("%d ",numbersFound[j]);
-                arraySlot++;
+            int intChar = string[j]; // Convert char to int (shortable)
+
+            // Check if char is a number
+            if(intChar >= 48 && intChar <=57) {
+
+                // add the number to the numbers array
+                numbersFound[arraySlot]  = intChar-48;
+                arraySlot++; // Next array slot
 
             }
 
         }
-        printf("\n");
-
-
-
+        // Edit the total | -1 to the array 'cause it add 1 at the last iteration
+        total = total + numbersFound[0]*10 + numbersFound[arraySlot-1];
     }
 
-
+    printf("Total: %d", total);
     return 0;
 }
