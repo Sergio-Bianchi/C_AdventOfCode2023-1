@@ -9,6 +9,16 @@ int main() {
     char string[50];
     int total = 0;
 
+
+    char *sent = "sibfjblhsjr3";
+    char *word = "six";
+
+    char *pch = strstr(sent, word);
+
+    if(pch) printf("%s\n", pch);
+
+
+
     // Open the file
     fp = fopen("input.txt","r");
 
